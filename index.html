@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍽️ Canteen Express - Staff Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Screen -->
+   <div id="loginScreen" style="display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px;">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-logo">🍽️</div>
+            <h1 class="login-title">Canteen Express</h1>
+            <p class="login-subtitle">Fast & Secure Food Ordering</p>
+            
+            <div id="errorMsg" class="error-msg"></div>
+
+            <div class="form-group">
+                <i class="fas fa-user form-icon"></i>
+                <input type="text" class="form-input" id="username" placeholder="Username">
+            </div>
+            
+            <div class="form-group">
+                <i class="fas fa-lock form-icon"></i>
+                <input type="password" class="form-input" id="password" placeholder="Password">
+            </div>
+
+
+            <!-- STAFF LOGIN BUTTON -->
+            <button class="login-btn" onclick="staffLogin()">
+                <i class="fas fa-sign-in-alt"></i> Staff Login
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="main-app">
+        <div class="app-header">
+            <h1 id="appTitle">Canteen Express Dashboard</h1>
+            <p id="appSubtitle">Welcome back!</p>
+            <div class="user-info" onclick="logout()">
+                <i class="fas fa-user"></i> <span id="userName"></span>
+                <i class="fas fa-sign-out-alt"></i>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('orders')">
+                <i class="fas fa-utensils"></i> Menu
+            </button>
+            <button class="tab-btn" onclick="showTab('orders-list')">
+                <i class="fas fa-list"></i> Orders (<span id="liveOrders">0</span>)
+            </button>
+            <button class="tab-btn" onclick="showTab('manage')">
+                <i class="fas fa-cog"></i> Manage Menu
+            </button>
+        </div>
+
+        <!-- Menu Tab -->
+       <div id="orders" class="tab-content active">
+    <!-- 🔥 STAFF SELLING SYSTEM - Perfect fit sa imong design -->
+    <div class="menu-section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2>📦 Available Items</h2>
+            <!-- ADD NEW ITEM BUTTON -->
+            <button class="add-item-btn" onclick="showAddItemForm()" title="Add new product">
+                ➕ New Item
+            </button>
+        </div>
+        <div id="menu-grid" class="menu-grid"></div>
+    </div>
+    
+    <div class="cart-section">
+        <h2>💰 Current Sale <span id="sale-total" style="font-size: 18px; color: #28a745;">₱0.00</span></h2>
+        <div id="order-summary"></div>
+        <div class="total-display" id="total-amount">Total: ₱0.00</div>
+        
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button class="place-order-btn" onclick="completeSale()" style="flex: 1; background: #28a745;">
+                <i class="fas fa-check-circle"></i> ✅ Complete Sale
+            </button>
+            <button class="clear-btn" onclick="clearCurrentOrder()" style="flex: 1; background: #dc3545; color: white;">
+                <i class="fas fa-trash"></i> Clear
+            </button>
+        </div>
+    </div>
+</div>
+
+        <!-- Orders List Tab -->
+        <div id="orders-list" class="tab-content">
+            <div class="orders-section">
+                <h2>📋 All Orders <span id="orderCount">(0)</span></h2>
+                <div id="all-orders"></div>
+            </div>
+        </div>
+
+        <!-- Manage Tab -->
+        <div id="manage" class="tab-content">
+            <div class="manage-section">
+                <h2>⚙️ Manage Menu Items</h2>
+                <div class="add-item-form">
+                    <input id="new-item-name" placeholder="Item name (e.g. Burger)">
+                    <input id="new-item-price" type="number" placeholder="Price" step="0.01">
+                    <button onclick="addMenuItem()">➕ Add Item</button>
+                </div>
+                <div id="menu-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
